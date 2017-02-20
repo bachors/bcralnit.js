@@ -1,0 +1,15 @@
+{
+  "name": "bcralnit.js",
+  "main": "js/bcralnit.js",
+  "homepage": "https://github.com/bachors/bcralnit.js",
+  "description": "jQuery plugin to add line number in textarea.",
+  "keywords": [
+    "textarea",
+    "syntax",
+    "highlighter"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*"
+  ]
+}
