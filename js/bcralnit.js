@@ -1,5 +1,6 @@
 /************************************************
  * #### jQuery bcralnit.js v0.0.1 ####
+ * add line number in textarea, pre, div etc.
  * Coded by Ican Bachors 2017.
  * https://github.com/bachors/bcralnit.js
  * Updates will be posted to this site.
@@ -14,16 +15,18 @@ $.fn.bcralnit = function(e) {
     if (typeof e === 'object') {
         e.width = (e.width == undefined ? f.width : e.width);
         e.background = (e.background == undefined ? f.background : e.background);
-        e.color = (e.color == undefined ? f.color : e.color);
+        e.color = (e.color == undefined ? f.color : e.color)
     } else {
         e = f
     }
     $(this).each(function(i, a) {
-        var w = $(this).css('width'),
+        var f = $(this)[0].tagName,
+            w = $(this).css('width'),
             h = $(this).css('height'),
             d = ($(this).css('display') == 'inline' ? 'inline-block' : $(this).css('display')),
             ff = $(this).css('font-family'),
             fs = $(this).css('font-size'),
+            fw = $(this).css('font-weight'),
             lh = $(this).css('line-height'),
             bt = $(this).css('border-top-width'),
             bb = $(this).css('border-bottom-width'),
@@ -36,44 +39,46 @@ $.fn.bcralnit = function(e) {
             pr = $(this).css('padding-right'),
             nw = (parseInt(w) - parseInt(e.width)) + 'px',
             c = ($(this).attr('id') != null && $(this).attr('id') != undefined ? 'bcralnit_' + $(this).attr('id') + i : 'bcralnit_' + $(this).attr('class') + i),
-            b = '<div style="position:absolute;box-sizing:border-box;border:none;margin:0px;overflow:hidden;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;padding:' + (parseInt(pt) + parseInt(bt)) + 'px ' + pr + ' ' + pb + ' ' + pl + ';font-family:' + ff + ';font-size:' + fs + ';line-height:' + lh + ';right:' + e.width + ';width:' + (parseInt(nw) - parseInt(br) - parseInt(bl)) + 'px;height:calc(100% - ' + bb + ');background:' + e.background + ';color:' + e.color + '"></div>';
+            b = '<div class="bcr_number" style="text-shadow:none;position:absolute;box-sizing:border-box;border:none;margin:0px;overflow-x:hidden;overflow-y:auto;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;padding:' + (parseInt(pt) + parseInt(bt)) + 'px ' + pr + ' ' + pb + ' ' + pl + ';font-family:' + ff + ';font-size:' + fs + ';font-weight:' + fw + ';line-height:' + lh + ';right:' + e.width + ';width:' + (parseInt(nw) - parseInt(br) - parseInt(bl)) + 'px;height:calc(100% - ' + bb + ');background:' + e.background + ';color:' + e.background + '"></div>';
         $(this).css('width', nw);
         $(this).css('height', '100%');
         $(this).css('position', 'absolute');
-        $(this).css('overflow', 'auto');
+        $(this).css('overflow-x', 'hidden');
+        $(this).css('overflow-y', 'auto');
         $(this).css('resize', 'none');
         $(this).css('top', '0px');
         $(this).css('margin', '0px');
         $(this).css('box-shadow', 'none');
         $(this).css('left', e.width);
         $(this).css('box-sizing', 'border-box');
-        $(this).wrap('<div id="' + c + '" style="display:' + d + ';box-sizing:border-box;border:none;background:' + e.background + ';position:relative;padding:0px;margin:' + m + ';width:' + w + ';height:' + h + '"></div>');
+        $(this).css('white-space', 'pre-wrap');
+        $(this).css('white-space', 'moz-pre-wrap');
+        $(this).css('white-space', '-pre-wrap');
+        $(this).css('white-space', '-o-pre-wrap');
+        $(this).css('word-wrap', 'break-word');
+        $(this).addClass("bcr_line");
+        $(this).wrap('<div id="' + c + '" style="display:' + d + ';overflow:hidden;box-sizing:border-box;border:none;background:' + e.background + ';position:relative;padding:0px;margin:' + m + ';width:' + w + ';height:' + h + '"></div>');
         $(this).before(b);
-        var b = $(this).val().split('\n').length;
-        addln(b, c);
+        var b = (f == 'TEXTAREA' ? $(this).val().split('\n').length : $(this).html().split('\n').length);
+        addln(f, b, c);
         $(this).on('blur focus change keyup keydown', function() {
-            var a = $(this).val().split('\n').length;
-            addln(a, c)
+            var a = (f == 'TEXTAREA' ? $(this).val().split('\n').length : $(this).html().split('\n').length);
+            addln(f, a, c)
         });
         $(this).scroll(function() {
-            $('#' + c + ' div').scrollTop($(this).scrollTop())
-        });
-        $('#' + c + ' div').scroll(function() {
-            $(this).scrollTop($('#' + c + ' div').scrollTop())
+            $('#' + c + ' .bcr_number').scrollTop($(this).scrollTop())
         })
     });
 
-    function addln(a, b) {
+    function addln(d, a, b) {
         var c = '';
         for (i = 0; i < a; i++) {
-            var j = $('#' + b + ' textarea').val().split('\n')[i].substr(i.toString().length).length;
-            var s = '';
-            for (x = 0; x < j; x++) {
-                s += '&nbsp;'
-            }
-            c += (i + 1) + s + '<br>'
+            var n = (i + 1);
+            var f = (d == 'TEXTAREA' ? $('#' + b + ' .bcr_line').val().split('\n')[i] : $('#' + b + ' .bcr_line').html().split('\n')[i]);
+            var g = f.substring(n.toString().length, f.length);
+            c += '<span style="background:transparent;border:none;box-shadow:none;color:' + e.color + '">' + n + '</span>' + g.replace(/\</ig, '~').replace(/\>/ig, '~') + '<br>'
         };
-        $('#' + b + ' div').html(c);
-        $('#' + b + ' div').scrollTop($('#' + b + ' textarea').scrollTop())
+        $('#' + b + ' .bcr_number').html(c);
+        $('#' + b + ' .bcr_number').scrollTop($('#' + b + ' .bcr_line').scrollTop())
     }
 }
