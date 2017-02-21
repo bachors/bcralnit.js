@@ -1,12 +1,12 @@
 # bcralnit.js
-jQuery plugin to add line number in textarea.
+jQuery plugin to add line number in textarea, pre, div etc.
 
 <h2>Sample:</h2>
 <pre>// Default
-$("textarea").bcralnit();
+$(element).bcralnit();
 
 // with options
-$("textarea").bcralnit({
+$(element).bcralnit({
     width: '50px',           // default: '60px'
     background: 'salmon',    // default: '#ddd'
     color: '#fff'            // default: '#333'
