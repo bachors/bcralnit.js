@@ -1,87 +1,90 @@
+
+
 <!DOCTYPE html>
 <html>
 	<head>
-		
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		
 		<!-- Mobile viewport optimized -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-		
 		<!-- Title -->
 		<title>Ican Bachors - iBacor</title>
 		<link rel="shortcut icon" href="http://ibacor.com/bcr_asset/theme/images/favicon.ico" />
-		
-<style>
-body{
-	font-family: arial
-}
-textarea {
-	width: 100%;
-	height: 300px;
-	padding: 10px;
-	background: #111;
-	color: #fff;
-	border: none;
-}
-.kelas {
-	width: 600px;
-	height: 500px;
-	background: #fff;
-	color: #000;
-	padding: 5px;
-	line-height: 22px;
-	border: 6px solid #75BAFF;
-	display: inline-block
-}
-pre {
-	background: #fafafa;
-	color: #333;
-	padding: 10px;
-	line-height: 22px;
-	border: 1px solid #ddd
-}
-</style>
+		<style>
+		body{
+			font-family: arial;
+			padding-bottom: 30px
+		}
+		.prettyprint {
+			border: none;
+			height: 240px
+		}
+		.demo1 {
+			width: 49%;
+			height: 500px;
+			background: #fff;
+			color: #000;
+			padding: 5px;
+			line-height: 22px;
+			border: 6px solid #75BAFF;
+			display: inline
+		}
+		#demo2,
+		#demo3 {
+			width: 600px;
+			height: 430px;
+			padding: 10px;
+			background: #ddd;
+			color: #000;
+			border: none;
+			line-height: 24px;
+			display: inline-block
+		}
+		pre {
+			background: #fafafa;
+			color: #333;
+			padding: 10px;
+			line-height: 22px;
+			border: 1px solid #ddd
+		}
+		</style>
 	</head>
-	<body>		
-<h1 align="center">bcralnit.js</h1>
-<p align="center">jQuery plugin to add line number in textarea.</p>
-
-<h2>Sample:</h2>
-<pre>// Default
-$("textarea").bcralnit();
+	<body>
+		<h1 align="center">bcralnit.js</h1>
+		<p align="center">jQuery plugin to add line number in textarea, pre, div etc.</p>
+		<h2>Sample:</h2>
+		<pre>// Default
+$(element).bcralnit();
 
 // with options
-$("textarea").bcralnit({
+$(element).bcralnit({
     width: '50px',           // default: '60px'
     background: 'salmon',    // default: '#ddd'
     color: '#fff'            // default: '#333'
 });</pre>
 
-<h3>Demo 1</h3>
-<p>Selector by <b>ClassName</b> with <b>custom options</b> & custom <b>css</b> border, line-height, inline-block.</p>
-<textarea class="kelas"><!-- CSS -->
-.kelas {
-    width: 600px;
+		<h3>Demo &lt;TEXTAREA/&gt;</h3>
+		<textarea class="demo1"><!-- CSS -->
+.demo1 {
+    width: 49%;
     height: 500px;
     background: #fff;
     color: #000;
     padding: 5px;
     line-height: 22px;
     border: 6px solid #75BAFF;
-    display: inline-block
+    display: inline
 }
 
 <!-- HTML -->
-&lt;textarea class="kelas"&gt;&lt;/textarea&gt;
+&lt;textarea class="demo1"&gt;&lt;/textarea&gt;
 
 <!-- JS -->
-$(".kelas").bcralnit({
+$(".demo1").bcralnit({
     width: '50px',
     background: '#75BAFF',
     color: '#fff'
-});</textarea>
-<textarea class="kelas"><!-- Offside word-wrap-->
+});</textarea><textarea class="demo1"><!-- Offside word-wrap-->
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
@@ -109,37 +112,84 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 
 
 Scroll...</textarea>
-<h3>Demo 2</h3>
-<p>Selector by <b>ID</b> with <b>default options</b> & custom <b>css</b> width: 100%.</p>
-<textarea id="aydi"><!-- CSS -->
-#aydi {
-    width: 100%;
-    height: 300px;
+
+		<h3>Demo &lt;PRE/&gt; with Google code prettify</h3>
+		<pre class="prettyprint">&lt;pre class="prettyprint"&gt;&lt;/pre&gt;
+
+&lt;script src="//cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"&gt;&lt;/script&gt;
+&lt;script src="//code.jquery.com/jquery-2.1.3.min.js"&gt;&lt;/script&gt;
+&lt;script src="js/bcralnit.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+$(function() {
+    $(".prettyprint").bcralnit();
+});
+&lt;/script&gt;</pre>
+
+		<h3>Demo &lt;DIV/&gt; and  &lt;P/&gt;</h3>
+		<div id="demo2">#demo2 {
+    width: 600px;
+    height: 430px;
     padding: 10px;
-    background: #111;
-    color: #fff;
-    border: none;
+    background: #ddd;
+    color: #000;
+    line-height: 24px;
+    display: inline-block
 }
 
-<!-- HTML -->
-&lt;textarea id="aydi"&gt;&lt;/textarea&gt;
+&lt;div id="demo2"&gt;&lt;/div&gt;
 
-<!-- JS -->
-$("#aydi").bcralnit();</textarea>
+$("#demo2").bcralnit({
+    width: '70px',
+    background: '#FF5C5C',
+    color: '#fff'
+});</div>
+		<p id="demo3">#demo3 {
+    width: 600px;
+    height: 430px;
+    padding: 10px;
+    background: #ddd;
+    color: #000;
+    line-height: 24px;
+    display: inline-block
+}
 
-<a href="https://github.com/bachors/bcralnit.js" target="_BLANK"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+&lt;p id="demo3"&gt;&lt;/p&gt;
 
-<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
-<script src="js/bcralnit.js"></script>
-<script>
-$(function() {
-	$(".kelas").bcralnit({
-        width: '50px',
-        background: '#75BAFF',
-        color: '#fff'
-    });
-	$("#aydi").bcralnit();
-});
-</script>
+$("#demo3").bcralnit({
+    width: '70px',
+    background: '#AD5CFF',
+    color: '#fff'
+});</p>
+
+		<a href="https://github.com/bachors/bcralnit.js" target="_BLANK"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+		
+		<script src="//cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+		<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+		<script src="js/bcralnit.js"></script>
+		<script>
+		$(function() {
+		
+			$(".demo1").bcralnit({
+		        width: '50px',
+		        background: '#75BAFF',
+		        color: '#fff'
+		    });
+			
+			$(".prettyprint").bcralnit();
+			
+			$("#demo2").bcralnit({
+		        width: '70px',
+		        background: '#FF5C5C',
+		        color: '#fff'
+		    });
+			
+			$("#demo3").bcralnit({
+		        width: '70px',
+		        background: '#AD5CFF',
+		        color: '#fff'
+		    });
+			
+		});
+		</script>
 	</body>
 </html>
