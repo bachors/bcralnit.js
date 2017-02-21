@@ -9,7 +9,8 @@ $(element).bcralnit();
 $(element).bcralnit({
     width: '50px',           // default: '60px'
     background: 'salmon',    // default: '#ddd'
-    color: '#fff'            // default: '#333'
+    color: '#fff',           // default: '#333'
+    addClass: 'foo'          // default: ''
 });</pre>
 
 <h2><a href="http://ibacor.com/download/demo/bcralnitjs/">DEMO</a></h2>
