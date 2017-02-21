@@ -59,10 +59,10 @@ $.fn.bcralnit = function(e) {
         $(this).addClass("bcr_line");
         $(this).wrap('<div id="' + c + '" style="display:' + d + ';overflow:hidden;box-sizing:border-box;border:none;background:' + e.background + ';position:relative;padding:0px;margin:' + m + ';width:' + w + ';height:' + h + '"></div>');
         $(this).before(b);
-        var b = (f == 'TEXTAREA' ? $(this).val().split('\n').length : $(this).html().split('\n').length);
+        var b = (f == 'TEXTAREA' ? $(this).val().split('\n').length : $(this).text().split(/\n/).length);
         addln(f, b, c);
         $(this).on('blur focus change keyup keydown', function() {
-            var a = (f == 'TEXTAREA' ? $(this).val().split('\n').length : $(this).html().split('\n').length);
+            var a = (f == 'TEXTAREA' ? $(this).val().split('\n').length : $(this).text().split(/\n/).length);
             addln(f, a, c)
         });
         $(this).scroll(function() {
@@ -74,7 +74,7 @@ $.fn.bcralnit = function(e) {
         var c = '';
         for (i = 0; i < a; i++) {
             var n = (i + 1);
-            var f = (d == 'TEXTAREA' ? $('#' + b + ' .bcr_line').val().split('\n')[i] : $('#' + b + ' .bcr_line').html().split('\n')[i]);
+            var f = (d == 'TEXTAREA' ? $('#' + b + ' .bcr_line').val().split('\n')[i] : $('#' + b + ' .bcr_line').text().split(/\n/)[i]);
             var g = f.substring(n.toString().length, f.length);
             c += '<span style="background:transparent;border:none;box-shadow:none;color:' + e.color + '">' + n + '</span>' + g.replace(/\</ig, '~').replace(/\>/ig, '~') + '<br>'
         };
