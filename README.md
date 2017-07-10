@@ -12,5 +12,3 @@ $(element).bcralnit({
     color: '#fff',           // default: '#333'
     addClass: 'foo'          // default: ''
 });</pre>
-
-<h2><a href="http://ibacor.com/download/demo/bcralnitjs/">DEMO</a></h2>
